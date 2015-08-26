@@ -107,4 +107,18 @@ public class Filme {
 	public void setProfissionais(List<Profissional> profissionais) {
 		this.profissionais = profissionais;
 	}
+	
+	//TODO - Finalizar equals.
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		
+		if(this.nomeOriginal.equals(((Filme) obj).getNomeOriginal())) {
+			return true;
+		}
+		
+		return false;
+	}
 }

@@ -11,7 +11,7 @@ public class FiltroFilme {
 	private String nome;
 	private String nomeOriginal;
 	private String nomeDiretor;
-	private Profissional ator = new Profissional();
+	private Profissional ator;
 
 	public String getNome() {
 		return nome;

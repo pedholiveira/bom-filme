@@ -24,7 +24,7 @@
 				<p:outputLabel for="nomeAtor" value="Ator: " />
 				<p:selectOneMenu id="nomeAtor" value="#{filmeBean.filtro.ator}">
 					<f:selectItem></f:selectItem>
- 		            <f:selectItems value="#{atorBean.atores}" var="ator" itemLabel="#{ator.nome}" itemValue="#{ator}" />
+ 		            <f:selectItems value="#{filmeBean.lerAtores()}" var="ator" itemLabel="#{ator.nome}" itemValue="#{ator}" />
 		        </p:selectOneMenu>
 												
 				<p:commandButton value="Pesquisar" action="#{filmeBean.pesquisar}" update="table-filmes"/>		
@@ -39,20 +39,20 @@
 		        <h:outputText value="#{filme.nomeOriginal}" />
 		    </p:column>
 		    <p:column headerText="Estúdio: ">
-		        <h:outputText value="#{filme.estudio}" />
+		        <h:outputText value="#{filme.estudioPrincipal}" />
 		    </p:column>
 		    <p:column headerText="Ano de Produção: ">
 		        <h:outputText value="#{filme.anoProducao}" />
 		    </p:column>
 		    <p:column headerText="Quantidade disponível: ">
-		    	<h:dataTable value="#{filme.midias}" var="midia">
-					<h:column>
-						<h:outputText value="#{midia.tipo} - #{midia.quantidade} disponíveis" />
-						<p:selectManyCheckbox layout="grid" columns="1">
-							<f:selectItem itemValue="" itemLabel="" />
-						</p:selectManyCheckbox>
-					</h:column>
-				</h:dataTable>
+		    	<p:panelGrid columns="1">
+		    		<p:selectManyCheckbox>
+				        <f:selectItem itemLabel="DVD - #{filmeBean.lerQuantidadeExemplares(filme, 'DVD')}" itemValue="" />
+				    </p:selectManyCheckbox>
+			    	<p:selectManyCheckbox>
+				        <f:selectItem itemLabel="Bluray - #{filmeBean.lerQuantidadeExemplares(filme, 'Bluray')}" itemValue="" />
+				    </p:selectManyCheckbox>
+		    	</p:panelGrid>
 		    </p:column>
 		</p:dataTable>
 	</h:body>

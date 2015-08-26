@@ -25,8 +25,8 @@ public class MockUtil {
 	private static Map<Integer, Exemplar> exemplaresCadastrados = new HashMap<Integer, Exemplar>();
 	
 	static {
-		carregarFilmes();
 		carregarProfissionais();
+		carregarFilmes();
 		carregarExemplares();
 	}
 	
@@ -50,6 +50,17 @@ public class MockUtil {
 		List<Profissional> profissionais = new ArrayList<Profissional>();
 		profissionaisCadastrados.forEach((key, value) -> profissionais.add(value));
 		return profissionais;
+	}
+	
+	/**
+	 * Retorna a lista com os exemplares mockados no sistema.
+	 * 
+	 * @return Uma {@link List} de objetos do tipo {@link Exemplar}.
+	 */
+	public static List<Exemplar> getExemplares() {
+		List<Exemplar> exemplares = new ArrayList<Exemplar>();
+		exemplaresCadastrados.forEach((key, value) -> exemplares.add(value));
+		return exemplares;
 	}
 
 	/**
@@ -77,7 +88,7 @@ public class MockUtil {
 		
 		profissionaisCadastrados.put("christopherNolan", christopherNolan);
 		profissionaisCadastrados.put("martinScorsese", martinScorsese);
-		profissionaisCadastrados.put("leornadoDiCaprio", leornadoDiCaprio);
+		profissionaisCadastrados.put("leonardoDiCaprio", leornadoDiCaprio);
 		profissionaisCadastrados.put("ellenPage", ellenPage);
 	}
 	
