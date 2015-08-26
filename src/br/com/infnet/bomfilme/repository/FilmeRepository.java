@@ -18,21 +18,37 @@ public interface FilmeRepository {
 	 * Lista os filmes cadastrados a partir de um filtro. 
 	 * 
 	 * @param filtro
-	 * @return Um {@link List} de {@link Filme}
+	 * @return Um {@link List} de {@link Filme}.
 	 */
 	public List<Filme> pesquisarFilmes(FiltroFilme filtro);
 	
 	/**
 	 * Retorna todos os atores cadastrados.
 	 * 
-	 * @return Um {@link List} de {@link Profissional}
+	 * @return Um {@link List} de {@link Profissional}.
 	 */
 	public Set<Profissional> listarAtores();
 	
 	/**
 	 * Retorna, a partir de um filme, uma lista com todos os exemplares cadastrados.
 	 * 
-	 * @return Um {@link List} de {@link Exemplar}
+	 * @return Um {@link List} de {@link Exemplar}.
 	 */
 	public List<Exemplar> lerExemplares(Filme filme);
+	
+	/**
+	 * Retorna um diretor a partir do seu nome.
+	 * 
+	 * @param nome
+	 * @return Um objeto do tipo {@link Profissional}.
+	 */
+	public Profissional buscarDiretorPorNome(String nome);
+
+	/**
+	 * Retorna um ator a partir do seu nome.
+	 * 
+	 * @param nome
+	 * @return Um objeto do tipo {@link Profissional}.
+	 */
+	public Profissional buscarAtorPorNome(String nome);
 }

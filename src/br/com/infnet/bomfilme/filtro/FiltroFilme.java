@@ -1,7 +1,5 @@
 package br.com.infnet.bomfilme.filtro;
 
-import br.com.infnet.bomfilme.model.Profissional;
-
 /**
  * Filtro da busca de filmes.
  * 
@@ -11,7 +9,7 @@ public class FiltroFilme {
 	private String nome;
 	private String nomeOriginal;
 	private String nomeDiretor;
-	private Profissional ator;
+	private String nomeAtor;
 
 	public String getNome() {
 		return nome;
@@ -37,11 +35,11 @@ public class FiltroFilme {
 		this.nomeDiretor = nomeDiretor;
 	}
 
-	public Profissional getAtor() {
-		return ator;
+	public String getNomeAtor() {
+		return nomeAtor;
 	}
 
-	public void setAtor(Profissional ator) {
-		this.ator = ator;
+	public void setNomeAtor(String nomeAtor) {
+		this.nomeAtor = nomeAtor;
 	}
 }

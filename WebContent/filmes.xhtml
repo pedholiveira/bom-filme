@@ -22,9 +22,9 @@
 				<p:inputText id="nomeDiretor" value="#{filmeBean.filtro.nomeDiretor}" />
 				
 				<p:outputLabel for="nomeAtor" value="Ator: " />
-				<p:selectOneMenu id="nomeAtor" value="#{filmeBean.filtro.ator}">
+				<p:selectOneMenu id="nomeAtor" value="#{filmeBean.filtro.nomeAtor}">
 					<f:selectItem></f:selectItem>
- 		            <f:selectItems value="#{filmeBean.lerAtores()}" var="ator" itemLabel="#{ator.nome}" itemValue="#{ator}" />
+ 		            <f:selectItems value="#{filmeBean.lerAtores()}" var="ator" itemLabel="#{ator.nome}" itemValue="#{ator.nome}" />
 		        </p:selectOneMenu>
 												
 				<p:commandButton value="Pesquisar" action="#{filmeBean.pesquisar}" update="table-filmes"/>		
