@@ -22,7 +22,6 @@ import br.com.infnet.bomfilme.model.TipoMidia;
 public class MockUtil {
 	private static Map<String, Filme> filmesCadastrados = new HashMap<String, Filme>();
 	private static Map<String, Profissional> profissionaisCadastrados = new HashMap<String, Profissional>();
-	private static Map<Integer, Exemplar> exemplaresCadastrados = new HashMap<Integer, Exemplar>();
 	
 	static {
 		carregarProfissionais();
@@ -52,17 +51,6 @@ public class MockUtil {
 		return profissionais;
 	}
 	
-	/**
-	 * Retorna a lista com os exemplares mockados no sistema.
-	 * 
-	 * @return Uma {@link List} de objetos do tipo {@link Exemplar}.
-	 */
-	public static List<Exemplar> getExemplares() {
-		List<Exemplar> exemplares = new ArrayList<Exemplar>();
-		exemplaresCadastrados.forEach((key, value) -> exemplares.add(value));
-		return exemplares;
-	}
-
 	/**
 	 * Carrega os dados de filmes que serão mockados.
 	 */
@@ -96,29 +84,16 @@ public class MockUtil {
 	 * Carrega os dados dos exemplares que serão mockados.
 	 */
 	private static void carregarExemplares() {
-		Filme inception = filmesCadastrados.get("inception");
-		Filme ilhaDoMedo = filmesCadastrados.get("ilhaDoMedo");
+		filmesCadastrados.get("inception").getExemplares().add(new Exemplar(Calendar.getInstance(), TipoMidia.DVD, 60.9));
+		filmesCadastrados.get("inception").getExemplares().add(new Exemplar(Calendar.getInstance(), TipoMidia.DVD, 60.9));
+		filmesCadastrados.get("inception").getExemplares().add(new Exemplar(Calendar.getInstance(), TipoMidia.DVD, 60.9));
+		filmesCadastrados.get("inception").getExemplares().add(new Exemplar(Calendar.getInstance(), TipoMidia.BLURAY, 90.9));
+		filmesCadastrados.get("inception").getExemplares().add(new Exemplar(Calendar.getInstance(), TipoMidia.BLURAY, 90.9));
 		
-		Exemplar exemplar1 = new Exemplar(inception, Calendar.getInstance(), TipoMidia.DVD, 60.9);
-		Exemplar exemplar2 = new Exemplar(inception, Calendar.getInstance(), TipoMidia.DVD, 60.9);
-		Exemplar exemplar3 = new Exemplar(inception, Calendar.getInstance(), TipoMidia.DVD, 60.9);
-		Exemplar exemplar4 = new Exemplar(inception, Calendar.getInstance(), TipoMidia.BLURAY, 90.9);
-		Exemplar exemplar5 = new Exemplar(inception, Calendar.getInstance(), TipoMidia.BLURAY, 90.9);
-		
-		Exemplar exemplar6 = new Exemplar(ilhaDoMedo, Calendar.getInstance(), TipoMidia.DVD, 40.9);
-		Exemplar exemplar7 = new Exemplar(ilhaDoMedo, Calendar.getInstance(), TipoMidia.DVD, 40.9);
-		Exemplar exemplar8 = new Exemplar(ilhaDoMedo, Calendar.getInstance(), TipoMidia.DVD, 40.9);
-		Exemplar exemplar9 = new Exemplar(ilhaDoMedo, Calendar.getInstance(), TipoMidia.BLURAY, 70.9);
-		
-		exemplaresCadastrados.put(1, exemplar1);
-		exemplaresCadastrados.put(2, exemplar2);
-		exemplaresCadastrados.put(3, exemplar3);
-		exemplaresCadastrados.put(4, exemplar4);
-		exemplaresCadastrados.put(5, exemplar5);
-		exemplaresCadastrados.put(6, exemplar6);
-		exemplaresCadastrados.put(7, exemplar7);
-		exemplaresCadastrados.put(8, exemplar8);
-		exemplaresCadastrados.put(9, exemplar9);
+		filmesCadastrados.get("ilhaDoMedo").getExemplares().add(new Exemplar(Calendar.getInstance(), TipoMidia.DVD, 40.9));
+		filmesCadastrados.get("ilhaDoMedo").getExemplares().add(new Exemplar(Calendar.getInstance(), TipoMidia.DVD, 40.9));
+		filmesCadastrados.get("ilhaDoMedo").getExemplares().add(new Exemplar(Calendar.getInstance(), TipoMidia.DVD, 40.9));
+		filmesCadastrados.get("ilhaDoMedo").getExemplares().add(new Exemplar(Calendar.getInstance(), TipoMidia.BLURAY, 70.9));
 	}
 	
 }

@@ -8,7 +8,6 @@ import java.util.Calendar;
  * @author Pedro Henrique
  */
 public class Exemplar {
-	private Filme filme;
 	private Calendar dataAquisicao;
 	private String tipoMidia;
 	private Double valorAquisicao;
@@ -16,19 +15,10 @@ public class Exemplar {
 	public Exemplar() {
 	}
 
-	public Exemplar(Filme filme, Calendar dataAquisicao, String tipoMidia, Double valorAquisicao) {
-		this.filme = filme;
+	public Exemplar(Calendar dataAquisicao, String tipoMidia, Double valorAquisicao) {
 		this.dataAquisicao = dataAquisicao;
 		this.tipoMidia = tipoMidia;
 		this.valorAquisicao = valorAquisicao;
-	}
-
-	public Filme getFilme() {
-		return filme;
-	}
-
-	public void setFilme(Filme filme) {
-		this.filme = filme;
 	}
 
 	public Calendar getDataAquisicao() {

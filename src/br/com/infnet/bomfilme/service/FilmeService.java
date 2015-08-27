@@ -39,17 +39,4 @@ public class FilmeService {
 	public Set<Profissional> listarAtores() {
 		return repository.listarAtores();
 	}
-
-	/**
-	 * Retorna a quantidade de exemplares de um tipo de mída que um filme tem.
-	 * 
-	 * @return
-	 */
-	public long lerQuantidadeExemplares(Filme filme, String tipoMidia) {
-		long qtd = repository.lerExemplares(filme).stream()
-				.filter(e -> e.getFilme().equals(filme))
-				.filter(e -> e.getTipoMidia().equals(tipoMidia)).count();
-
-		return qtd;
-	}
 }

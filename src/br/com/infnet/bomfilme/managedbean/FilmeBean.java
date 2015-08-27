@@ -32,7 +32,11 @@ public class FilmeBean {
 	}
 	
 	public long lerQuantidadeExemplares(Filme filme, String tipoMidia) {
-		return service.lerQuantidadeExemplares(filme, tipoMidia);
+		long qtd = filme.getExemplares()
+								.stream()
+								.filter(e -> e.getTipoMidia().equals(tipoMidia))
+								.count();
+		return qtd;
 	}
 	
 	public List<Filme> getFilmes() {

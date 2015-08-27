@@ -1,5 +1,6 @@
 package br.com.infnet.bomfilme.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class Filme {
 	private String estudioPrincipal;
 	private Double precoAluguel;
 	private List<Profissional> profissionais;
+	private List<Exemplar> exemplares;
 
 	public Filme() {
 	}
@@ -34,6 +36,7 @@ public class Filme {
 		this.estudioPrincipal = estudioPrincipal;
 		this.precoAluguel = precoAluguel;
 		this.profissionais = profissionais;
+		this.exemplares = new ArrayList<Exemplar>();
 	}
 
 	public String getNome() {
@@ -106,6 +109,14 @@ public class Filme {
 
 	public void setProfissionais(List<Profissional> profissionais) {
 		this.profissionais = profissionais;
+	}
+	
+	public List<Exemplar> getExemplares() {
+		return exemplares;
+	}
+	
+	public void setExemplares(List<Exemplar> exemplares) {
+		this.exemplares = exemplares;
 	}
 	
 	//TODO - Finalizar equals.
