@@ -9,13 +9,14 @@ import java.util.Calendar;
  */
 public class Exemplar {
 	private Calendar dataAquisicao;
-	private String tipoMidia;
+	private String tipoMidia; //TODO - Transformar tipo de midia em um enum.
 	private Double valorAquisicao;
 
 	public Exemplar() {
 	}
 
-	public Exemplar(Calendar dataAquisicao, String tipoMidia, Double valorAquisicao) {
+	public Exemplar(Calendar dataAquisicao, String tipoMidia,
+			Double valorAquisicao) {
 		this.dataAquisicao = dataAquisicao;
 		this.tipoMidia = tipoMidia;
 		this.valorAquisicao = valorAquisicao;
@@ -44,5 +45,4 @@ public class Exemplar {
 	public void setValorAquisicao(Double valorAquisicao) {
 		this.valorAquisicao = valorAquisicao;
 	}
-
 }

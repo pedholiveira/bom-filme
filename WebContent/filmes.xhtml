@@ -22,7 +22,7 @@
 				<p:inputText id="nomeDiretor" value="#{filmeBean.filtro.nomeDiretor}" />
 				
 				<p:outputLabel for="nomeAtor" value="Ator: " />
-				<p:selectOneMenu id="nomeAtor" value="#{filmeBean.filtro.nomeAtor}">
+				<p:selectOneMenu id="nomeAtor" value="#{filmeBean.filtro.nomeAtor}" effect="fold">
 					<f:selectItem></f:selectItem>
  		            <f:selectItems value="#{filmeBean.lerAtores()}" var="ator" itemLabel="#{ator.nome}" itemValue="#{ator.nome}" />
 		        </p:selectOneMenu>
@@ -45,15 +45,23 @@
 		        <h:outputText value="#{filme.anoProducao}" />
 		    </p:column>
 		    <p:column headerText="Quantidade disponível: ">
-		    	<p:panelGrid columns="1">
-		    		<p:selectManyCheckbox>
-				        <f:selectItem itemLabel="DVD - #{filmeBean.lerQuantidadeExemplares(filme, 'DVD')}" itemValue="" />
-				    </p:selectManyCheckbox>
-			    	<p:selectManyCheckbox>
-				        <f:selectItem itemLabel="Bluray - #{filmeBean.lerQuantidadeExemplares(filme, 'Bluray')}" itemValue="" />
-				    </p:selectManyCheckbox>
-		    	</p:panelGrid>
+		    	<h:form>
+			    	<p:panelGrid columns="1">
+			    		<p:row>
+				    		<h:outputText value="DVD - #{filmeBean.lerQuantidadeExemplares(filme, 'DVD')}" style="float: left"/>
+				    		<h:commandLink value="Incluir no carrinho" action="#{filmeBean.incluirItemCarrinho(filme, 'DVD')}" style="float: right"/>
+			    		</p:row>
+			    		<p:row>
+			    			<h:outputText value="Bluray - #{filmeBean.lerQuantidadeExemplares(filme, 'Bluray')}" style="float: left"/>
+				    		<h:commandLink value="Incluir no carrinho" action="#{filmeBean.incluirItemCarrinho(filme, 'Bluray')}" style="float: right"/>
+			    		</p:row>
+			    	</p:panelGrid>
+			    </h:form>
 		    </p:column>
 		</p:dataTable>
+		
+		<p:panelGrid style="float: right;" columns="1">
+			<p:commandButton value="Alugar Filmes" disabled="true"/>
+		</p:panelGrid>
 	</h:body>
 </html>

@@ -9,7 +9,7 @@ public class Profissional {
 	private String nome;
 	private String dataNascimento;
 	private String paisOrigem;
-	private String papel; // TODO - Verificar se esta em local correto.
+	private String papel; // TODO - Transformar o papel em um enum.
 
 	public Profissional() {
 	}
