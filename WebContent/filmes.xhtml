@@ -32,16 +32,19 @@
 		</h:form>
 	
 		<p:dataTable id="table-filmes" var="filme" value="#{filmeBean.filmes}">
-			<p:column headerText="Nome: ">
+			<f:facet name="header">
+	            Acervo de Filmes
+	        </f:facet>
+			<p:column headerText="Nome: " sortBy="#{filme.nome}">
 		        <h:outputText value="#{filme.nome}" />
 		    </p:column>
-			<p:column headerText="Nome original: ">
+			<p:column headerText="Nome original: " sortBy="#{filme.nomeOriginal}">
 		        <h:outputText value="#{filme.nomeOriginal}" />
 		    </p:column>
-		    <p:column headerText="Estúdio: ">
+		    <p:column headerText="Estúdio: " sortBy="#{filme.estudioPrincipal}">
 		        <h:outputText value="#{filme.estudioPrincipal}" />
 		    </p:column>
-		    <p:column headerText="Ano de Produção: ">
+		    <p:column headerText="Ano de Produção: " sortBy="#{filme.anoProducao}">
 		        <h:outputText value="#{filme.anoProducao}" />
 		    </p:column>
 		    <p:column headerText="Quantidade disponível: ">
