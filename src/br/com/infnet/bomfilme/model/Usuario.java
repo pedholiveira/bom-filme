@@ -14,8 +14,25 @@ public class Usuario {
 	private String email;
 	private String identidade; // TODO - Mudar para lista de identidades.
 	private List<String> telefones;
-
+	private Login login;
 	// TODO - Incluir atributo para lista de dependentes.
+	
+	public Usuario() {
+	}
+	
+	public Usuario(String nome, Endereco endereco, String cpf, String email,
+			String identidade, List<String> telefones, Login login) {
+		this.nome = nome;
+		this.endereco = endereco;
+		this.cpf = cpf;
+		this.email = email;
+		this.identidade = identidade;
+		this.telefones = telefones;
+		this.login = login;
+	}
+
+
+
 	public String getNome() {
 		return nome;
 	}
@@ -62,6 +79,14 @@ public class Usuario {
 
 	public void setTelefones(List<String> telefones) {
 		this.telefones = telefones;
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 
 }

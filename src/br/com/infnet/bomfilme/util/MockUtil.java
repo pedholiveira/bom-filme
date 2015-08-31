@@ -8,11 +8,14 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.infnet.bomfilme.model.Categoria;
+import br.com.infnet.bomfilme.model.Endereco;
 import br.com.infnet.bomfilme.model.Exemplar;
 import br.com.infnet.bomfilme.model.Filme;
+import br.com.infnet.bomfilme.model.Login;
 import br.com.infnet.bomfilme.model.Papel;
 import br.com.infnet.bomfilme.model.Profissional;
 import br.com.infnet.bomfilme.model.TipoMidia;
+import br.com.infnet.bomfilme.model.Usuario;
 
 /**
  * Utilitário responsável por mockar os dados no sistema.
@@ -23,10 +26,14 @@ public class MockUtil {
 	private static Map<String, Filme> filmesCadastrados = new HashMap<String, Filme>();
 	private static Map<String, Profissional> profissionaisCadastrados = new HashMap<String, Profissional>();
 	
+	private static List<Usuario> usuariosCadastrados = new ArrayList<Usuario>();
+	
 	static {
 		carregarProfissionais();
 		carregarFilmes();
 		carregarExemplares();
+		
+		carregarUsuario();
 	}
 	
 	/**
@@ -39,7 +46,7 @@ public class MockUtil {
 		filmesCadastrados.forEach((key, value) -> filmes.add(value));
 		return filmes;
 	}
-	
+
 	/**
 	 * Retorna a lista com os profissionais mockados no sistema.
 	 * 
@@ -49,6 +56,10 @@ public class MockUtil {
 		List<Profissional> profissionais = new ArrayList<Profissional>();
 		profissionaisCadastrados.forEach((key, value) -> profissionais.add(value));
 		return profissionais;
+	}
+	
+	public static List<Usuario> getUsuarios() {
+		return usuariosCadastrados;
 	}
 	
 	/**
@@ -94,6 +105,18 @@ public class MockUtil {
 		filmesCadastrados.get("ilhaDoMedo").getExemplares().add(new Exemplar(Calendar.getInstance(), TipoMidia.DVD, 40.9));
 		filmesCadastrados.get("ilhaDoMedo").getExemplares().add(new Exemplar(Calendar.getInstance(), TipoMidia.DVD, 40.9));
 		filmesCadastrados.get("ilhaDoMedo").getExemplares().add(new Exemplar(Calendar.getInstance(), TipoMidia.BLURAY, 70.9));
+	}
+	
+	/**
+	 * Carrega os dados do usuário que será mockado.
+	 */
+	private static void carregarUsuario() {
+		Endereco endereco = new Endereco("Rua Teste", "Complemento teste", 
+										"Bairro Teste", "123456", "Rio de Janeiro", 
+										"RJ");
+		Login login = new Login("login", "senha");
+		
+		usuariosCadastrados.add(new Usuario("Pedro Henrique", endereco, "116.909.027-36", "ped.holiveira@gmail.com", "25.823.344-4", Arrays.asList("981648444"), login));
 	}
 	
 }
