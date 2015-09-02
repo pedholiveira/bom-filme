@@ -1,0 +1,30 @@
+body {
+	background-image: url("../img/background-login.jpg");
+    background-size: 100%;
+}
+
+/* Tela de login */
+.login {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -170px;
+	width: 295.65px;
+	height: 128.267px;
+	box-shadow: 7px 7px 16px #888;
+}
+
+.login tr {
+	background-color: #F2F2F2;	
+}
+
+.bt-entrar {
+	float: right;	
+}
+
+/* Remove as bordas de um panelgrid */
+.ui-panelgrid.borderless>*>tr,
+.ui-panelgrid.borderless .ui-panelgrid-cell {
+    border: none;
+}

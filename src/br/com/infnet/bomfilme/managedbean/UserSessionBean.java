@@ -39,7 +39,7 @@ public class UserSessionBean {
 	/**
 	 * Realiza o login a partir dos dados de {@link Login} inseridos.
 	 */
-	public void login() {
+	public void logar() {
 		Usuario usuario = service.getUsuarioByLogin(login);
 		
 		if(usuario != null) {
