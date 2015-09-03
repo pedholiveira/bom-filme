@@ -1,7 +1,9 @@
 package br.com.infnet.bomfilme.managedbean;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import br.com.infnet.bomfilme.model.Login;
@@ -45,7 +47,7 @@ public class UserSessionBean {
 		if(usuario != null) {
 			usuarioLogado = usuario;
 		} else {
-			//TODO - Exibir mensagem de erro ao usuário.
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha inválidos.", null));
 		}
 	}
 	

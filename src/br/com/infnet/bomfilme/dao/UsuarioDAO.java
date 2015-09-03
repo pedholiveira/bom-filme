@@ -23,7 +23,7 @@ public class UsuarioDAO implements UsuarioRepository {
 		Usuario usuario = usuariosCadastrados
 								.stream()
 								.filter(u -> u.getLogin().equals(login))
-								.findFirst()
+								.findAny()
 								.orElse(null);
 		
 		return usuario;

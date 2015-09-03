@@ -1,7 +1,11 @@
 package br.com.infnet.bomfilme.model;
 
+import javax.validation.constraints.NotNull;
+
 public class Login {
+	@NotNull(message="O campo login é obrigatório.")
 	private String login;
+	@NotNull(message="O campo senha é obrigatório.")
 	private String senha;
 
 	public Login() {
@@ -26,5 +30,22 @@ public class Login {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		
+		if(obj instanceof Login) {
+			Login l = (Login) obj;
+			
+			if(l.getLogin().equals(this.login) && l.getSenha().equals(this.senha)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }

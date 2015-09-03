@@ -3,6 +3,10 @@ body {
     background-size: 100%;
 }
 
+.ui-messages {
+	font-size: 12px !important;
+}
+
 /* Tela de login */
 .login {
 	position: absolute;

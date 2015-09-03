@@ -12,29 +12,37 @@
 	</h:head>
 	
 	<h:body>
-		<p:panelGrid id="panel-filme" styleClass="login borderless">
-			<p:row>
-				<p:column>
-					<p:outputLabel for="login" value="Login: "/>
-				</p:column>
-				<p:column>
-					<p:inputText id="login" value="#{userSessionBean.login.login}"/>
-				</p:column>
-			</p:row>
-			<p:row>
-				<p:column>
-					<p:outputLabel for="senha" value="Senha: "/>
-				</p:column>
-				<p:column>
-					<p:password id="senha" value="#{userSessionBean.login.senha}"/>
-				</p:column>
-			</p:row>
-			<p:row>
-				<p:column></p:column>
-				<p:column>
-					<p:commandButton action="#{userSessionBean.logar}" styleClass="bt-entrar" value="Entrar"/>
-				</p:column>
-			</p:row>
-		</p:panelGrid>
+		<h:form>
+			<p:panelGrid id="panel-filme" styleClass="login borderless">
+				<p:row>
+					<p:column colspan="2">
+						<p:messages id="messages" showIcon="false" autoUpdate="true" closable="true" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="login" value="Login:"/>
+					</p:column>
+					<p:column>
+						<p:inputText id="login" value="#{userSessionBean.login.login}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
+						<p:outputLabel for="senha" value="Senha:"/>
+					</p:column>
+					<p:column>
+						<p:password id="senha" value="#{userSessionBean.login.senha}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column></p:column>
+					<p:column>
+						<p:commandButton action="#{userSessionBean.logar}" styleClass="bt-entrar" 
+											value="Entrar" update="panel-filme"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</h:form>
 	</h:body>
 </html>
