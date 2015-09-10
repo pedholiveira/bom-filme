@@ -39,7 +39,13 @@
 					<p:column></p:column>
 					<p:column>
 						<p:commandButton action="#{userSessionBean.logar}" styleClass="bt-entrar" 
-											value="Entrar" update="panel-filme"/>
+											value="Entrar" rendered="#{param.proceed != null}" 
+											update="panel-filme">
+							<f:param name="proceed" value="#{param.proceed}"/>
+						</p:commandButton>
+						<p:commandButton action="#{userSessionBean.logar}" styleClass="bt-entrar" 
+											value="Entrar" rendered="#{param.proceed == null}" 
+											update="panel-filme"/>
 					</p:column>
 				</p:row>
 			</p:panelGrid>

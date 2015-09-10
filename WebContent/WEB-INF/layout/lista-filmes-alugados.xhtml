@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<p:dataTable id="table-filmes" var="aluguel" value="#{userSessionBean.usuarioLogado.filmesAlugados}">
+		<f:facet name="header">
+            Filmes Alugados
+        </f:facet>
+		<p:column headerText="Nome: " sortBy="#{aluguel.filme.nome}">
+	        <h:outputText value="#{aluguel.filme.nome}" />
+	    </p:column>
+	    <p:column headerText="Tipo de Mídia: " sortBy="#{aluguel.tipoMidia}">
+	        <h:outputText value="#{aluguel.tipoMidia}" />
+	    </p:column>
+	    <p:column headerText="Tipo de Mídia: " sortBy="#{aluguel.tipoMidia}">
+	        <h:outputText value="#{aluguel.tipoMidia}" />
+	    </p:column>
+	    <p:column headerText="Data de Aluguel: " sortBy="#{aluguel.dataAluguel}">
+	        <h:outputText value="#{aluguel.dataAluguel}" />
+	    </p:column>
+	    <p:column headerText="Data de Devolução: " sortBy="#{aluguel.dataDevolucao}">
+	        <h:outputText value="#{aluguel.dataDevolucao}" />
+	    </p:column>
+	</p:dataTable>
+</ui:composition>

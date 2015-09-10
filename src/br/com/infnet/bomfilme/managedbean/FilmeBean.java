@@ -19,8 +19,6 @@ public class FilmeBean {
 	private FiltroFilme filtro;
 	@Inject
 	private FilmeService service;
-	@Inject
-	private CarrinhoBean carrinhoBean;
 	
 	private List<Filme> filmes;
 
@@ -35,13 +33,9 @@ public class FilmeBean {
 	public long lerQuantidadeExemplares(Filme filme, String tipoMidia) {
 		long qtd = filme.getExemplares()
 								.stream()
-								.filter(e -> e.getTipoMidia().equals(tipoMidia))
+								.filter(e -> e.getTipoMidia().equals(tipoMidia) && !e.isAlugado())
 								.count();
 		return qtd;
-	}
-
-	public void incluirItemCarrinho(Filme filme, String tipoMidia) {
-		carrinhoBean.incluirItemCarrinho(filme, tipoMidia);
 	}
 
 	public List<Filme> getFilmes() {

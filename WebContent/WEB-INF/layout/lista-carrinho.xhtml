@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<div style="margin: 10 0 10 0">
+		<p:dataTable id="table-carrinho" var="item" value="#{carrinhoBean.itens}" style="width: 30%">
+			<f:facet name="header">
+	            Carrinho de compras
+	        </f:facet>
+	        <p:column headerText="Nome do filme: " sortBy="#{item.filme.nome}">
+		        <h:outputText value="#{item.filme.nome}" />
+		    </p:column>
+			<p:column headerText="Tipo de Mídia: " sortBy="#{item.tipoMidia}">
+		        <h:outputText value="#{item.tipoMidia}" />
+		    </p:column>
+		</p:dataTable>     
+		<p:commandButton value="Alugar Filmes" disabled="#{carrinhoBean.itens.size() == 0}" 
+							action="login.xhtml?proceed=confirmar-aluguelfaces-redirect=true" 
+							rendered="#{!userSessionBean.isLogado()}"/>
+		<p:commandButton value="Alugar Filmes" disabled="#{carrinhoBean.itens.size() == 0}"
+							action="confirmar-aluguel.xhtml" 
+							rendered="#{userSessionBean.isLogado()}"/>
+	</div>	
+</ui:composition>

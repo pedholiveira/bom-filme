@@ -5,22 +5,26 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import br.com.infnet.bomfilme.filtro.FiltroFilme;
+import br.com.infnet.bomfilme.model.Aluguel;
 import br.com.infnet.bomfilme.model.Filme;
 import br.com.infnet.bomfilme.model.Papel;
 import br.com.infnet.bomfilme.model.Profissional;
+import br.com.infnet.bomfilme.model.Usuario;
 import br.com.infnet.bomfilme.repository.FilmeRepository;
+import br.com.infnet.bomfilme.repository.UsuarioRepository;
 import br.com.infnet.bomfilme.util.MockUtil;
 
 public class FilmeDAO implements FilmeRepository {
-
+	@Inject
+	private UsuarioRepository usuarioRepository;
+	
 	private static List<Filme> filmesCadastrados;
 	private static List<Profissional> profissionaisCadastrados;
 	
-	@PostConstruct
-	public void carregarMocks() {
+	static {
 		filmesCadastrados = MockUtil.getFilmes();
 		profissionaisCadastrados = MockUtil.getProfissionais();
 	}
@@ -93,5 +97,25 @@ public class FilmeDAO implements FilmeRepository {
 									.findFirst()
 									.orElse(null);
 		return ator;
+	}
+
+	@Override
+	public void alugarFilmes(Usuario usuario, Filme filme, String tipoMidia) {
+		Aluguel aluguel = new Aluguel(filme, tipoMidia);
+
+		for (int i = 0; i < filmesCadastrados.size(); i++) {
+			if(filmesCadastrados.get(i).equals(filme)) {
+				for (int y = 0; y < filmesCadastrados.get(i).getExemplares().size(); y++) {
+					if(filmesCadastrados.get(i).getExemplares().get(y).getTipoMidia().equals(tipoMidia)) {
+						usuarioRepository.incluirAluguel(usuario, aluguel);
+						filmesCadastrados.get(i).getExemplares().get(y).setAlugado(true);
+						
+						return;
+					}
+				}
+				
+				break;
+			}
+		}
 	}
 }

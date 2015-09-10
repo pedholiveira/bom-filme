@@ -5,13 +5,22 @@
     xmlns:p="http://primefaces.org/ui">
 
 	<h:form>     
-	    <p:toolbar>
+	    <p:toolbar style="padding: 7 25 7 25">
 	        <f:facet name="left">
-	        	<p:outputLabel value="Olá, Pedro!"/>
+	        	<p:link href="filmes.xhtml" value="Filmes"/>
+        	 	<span class="ui-separator">
+            	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
+	            </span>
+	            <p:link href="#" value="Sugestões"/>
 	        </f:facet>
-	 
 	        <f:facet name="right">
-	        	<p:link href="#" value="Sair"/>
+	        	<h:panelGroup rendered="#{userSessionBean.isLogado()}">
+		        	<p:link href="filmes-alugados.xhtml" value="Filmes Alugados"/>
+		        	<span class="ui-separator">
+	            	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
+		            </span>
+		            <p:commandLink value="Sair"/>
+	        	</h:panelGroup>
 	        </f:facet>
 	    </p:toolbar>
 	</h:form>

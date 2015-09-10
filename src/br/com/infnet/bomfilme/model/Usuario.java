@@ -1,5 +1,6 @@
 package br.com.infnet.bomfilme.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ public class Usuario {
 	private String identidade; // TODO - Mudar para lista de identidades.
 	private List<String> telefones;
 	private Login login;
+	private List<Aluguel> filmesAlugados = new ArrayList<Aluguel>();
 	// TODO - Incluir atributo para lista de dependentes.
 	
 	public Usuario() {
@@ -87,6 +89,14 @@ public class Usuario {
 
 	public void setLogin(Login login) {
 		this.login = login;
+	}
+
+	public List<Aluguel> getFilmesAlugados() {
+		return filmesAlugados;
+	}
+
+	public void setFilmesAlugados(List<Aluguel> filmesAlugados) {
+		this.filmesAlugados = filmesAlugados;
 	}
 
 }

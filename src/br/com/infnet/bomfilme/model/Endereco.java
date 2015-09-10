@@ -74,4 +74,17 @@ public class Endereco {
 		this.estado = estado;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(rua);
+		
+		if(complemento != null)
+			builder.append(", ").append(complemento);
+		
+		builder.append(", ").append(bairro);
+		builder.append(" - ").append(cidade);
+		
+		return builder.toString();
+	}
 }

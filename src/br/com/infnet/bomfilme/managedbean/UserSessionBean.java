@@ -1,5 +1,7 @@
 package br.com.infnet.bomfilme.managedbean;
 
+import java.util.Map;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -41,14 +43,24 @@ public class UserSessionBean {
 	/**
 	 * Realiza o login a partir dos dados de {@link Login} inseridos.
 	 */
-	public void logar() {
-		Usuario usuario = service.getUsuarioByLogin(login);
+	public String logar() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Map<String,String> params = context.getExternalContext().getRequestParameterMap();
+		String proceed = params.get("proceed");
 		
+		Usuario usuario = service.getUsuarioByLogin(login);
 		if(usuario != null) {
 			usuarioLogado = usuario;
+			
+			if(proceed != null) {
+				return proceed;
+			}
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha inválidos.", null));
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+														"Login ou senha inválidos.", null));
 		}
+		
+		return "";
 	}
 	
 	/**
