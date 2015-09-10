@@ -1,5 +1,7 @@
 package br.com.infnet.bomfilme.managedbean;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +40,11 @@ public class CarrinhoBean {
 		return "filmes";
 	}
 	
-	public double totalAluguel() {
+	public String calcularDataDevolucao() {
+		return LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	}
+	
+	public double calcularTotalAluguel() {
 		return itens.stream()
 					.mapToDouble(i -> i.getFilme().getPrecoAluguel())
 					.sum();

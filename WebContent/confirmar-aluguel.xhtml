@@ -33,10 +33,18 @@
 				</p:row>
 				<p:row>
 					<p:column>
+						<p:outputLabel value="Data de devolução:"/>
+					</p:column>
+					<p:column>
+						<p:outputLabel value="#{carrinhoBean.calcularDataDevolucao()}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column>
 						<p:outputLabel value="Total:"/>
 					</p:column>
 					<p:column>
-						<p:outputLabel value="R$ #{carrinhoBean.totalAluguel()}"/>
+						<p:outputLabel value="R$ #{carrinhoBean.calcularTotalAluguel()}"/>
 					</p:column>
 				</p:row>
 				<p:row>
