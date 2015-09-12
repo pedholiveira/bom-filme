@@ -5,21 +5,49 @@
     xmlns:p="http://primefaces.org/ui">
 
 	<h:form>     
+		<div class="banner">
+		</div>
 	    <p:toolbar style="padding: 7 25 7 25">
 	        <f:facet name="left">
+	        	<p:outputLabel value="Bem vindo, #{userSessionBean.usuarioLogado.nome}" 
+	        					style="margin-right: 100px" rendered="#{userSessionBean.isLogado()}"/>
+	        	<span class="ui-separator">
+            	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
+	            </span>
 	        	<p:link href="filmes.xhtml" value="Filmes"/>
         	 	<span class="ui-separator">
             	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 	            </span>
-	            <p:link href="#" value="Sugestões"/>
+	            <h:panelGroup rendered="#{userSessionBean.isLogado()}">
+		            <p:link href="sugerir-filmes.xhtml" value="Sugestões"/>
+		           	<span class="ui-separator">
+		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
+		            </span>
+		      	</h:panelGroup>
 	        </f:facet>
 	        <f:facet name="right">
+	        	<h:panelGroup rendered="#{userSessionBean.isLogado() == false}">
+		        	<span class="ui-separator">
+		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
+		            </span>
+		        	<p:link href="login.xhtml" value="Entrar" 
+		        			rendered="#{userSessionBean.isLogado() == false}"/>
+		        	<span class="ui-separator">
+		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
+		            </span>
+		       	</h:panelGroup>
 	        	<h:panelGroup rendered="#{userSessionBean.isLogado()}">
+	        		<span class="ui-separator">
+		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
+		            </span>
 		        	<p:link href="filmes-alugados.xhtml" value="Filmes Alugados"/>
 		        	<span class="ui-separator">
 	            	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
-		            <p:commandLink value="Sair"/>
+		            <p:commandLink action="#{userSessionBean.logout}" value="Sair"/>
+		            <span class="ui-separator">
+		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
+		            </span>
 	        	</h:panelGroup>
 	        </f:facet>
 	    </p:toolbar>

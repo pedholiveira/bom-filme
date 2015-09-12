@@ -60,14 +60,16 @@ public class UserSessionBean {
 														"Login ou senha inválidos.", null));
 		}
 		
-		return "";
+		return "filmes?faces-redirect=true";
 	}
 	
 	/**
 	 * Realiza o logout do usuário no sistema.
 	 */
-	public void logout() {
+	public String logout() {
 		usuarioLogado = null;
+		
+		return "filmes?faces-redirect=true";
 	}
 
 	public Usuario getUsuarioLogado() {

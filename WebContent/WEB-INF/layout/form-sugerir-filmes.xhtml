@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid>
+		<p:row>
+			<p:column colspan="2">
+				<p:outputLabel value="Nos ajude a melhorar!"/>
+				<br />
+				<p:outputLabel value="Qual filme gostaria de ver aqui?"/>
+				<br />
+				<p:messages id="messages" showIcon="false" autoUpdate="true" closable="true" />
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column>
+				<p:outputLabel for="nomeFilme" value="Nome do Filme:"/>
+			</p:column>
+			<p:column>
+				<p:inputText id="nomeFilme" value="#{sugestaoBean.sugestao.nomeFilme}"/>
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column>
+				<p:outputLabel for="nomeDiretor" value="Nome do Diretor:"/>
+			</p:column>
+			<p:column>
+				<p:inputText id="nomeDiretor" value="#{sugestaoBean.sugestao.nomeDiretor}"/>
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column></p:column>
+			<p:column>
+				<p:commandButton action="#{sugestaoBean.gravar(userSessionBean.usuarioLogado)}" value="Enviar"/>
+			</p:column>
+		</p:row>
+	</p:panelGrid>
+</ui:composition>
