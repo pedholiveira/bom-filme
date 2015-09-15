@@ -5,10 +5,7 @@
     xmlns:p="http://primefaces.org/ui">
 
 	<div style="margin: 10 0 10 0">
-		<p:dataTable id="table-carrinho" var="item" value="#{carrinhoBean.itens}" style="width: 30%">
-			<f:facet name="header">
-	            Carrinho de compras
-	        </f:facet>
+		<p:dataTable id="table-carrinho" var="item" value="#{carrinhoBean.itens}">
 	        <p:column headerText="Nome do filme: " sortBy="#{item.filme.nome}">
 		        <h:outputText value="#{item.filme.nome}" />
 		    </p:column>
@@ -17,10 +14,12 @@
 		    </p:column>
 		</p:dataTable>     
 		<p:commandButton value="Alugar Filmes" disabled="#{carrinhoBean.itens.size() == 0}" 
-							action="login.xhtml?proceed=confirmar-aluguelfaces-redirect=true" 
-							rendered="#{!userSessionBean.isLogado()}"/>
+							action="login.xhtml?proceed=confirmar-aluguelfaces-redirect=true"
+							immediate="true" 
+							rendered="#{userSessionBean.isLogado() == false}"/>
 		<p:commandButton value="Alugar Filmes" disabled="#{carrinhoBean.itens.size() == 0}"
 							action="confirmar-aluguel.xhtml" 
+							immediate="true"
 							rendered="#{userSessionBean.isLogado()}"/>
 	</div>	
 </ui:composition>

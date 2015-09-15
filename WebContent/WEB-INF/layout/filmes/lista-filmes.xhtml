@@ -4,29 +4,7 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 
-	<h:form>
-		<p:panelGrid id="panel-filme" columns="2">
-			<p:outputLabel for="nome" value="Nome: " />
-			<p:inputText id="nome" value="#{filmeBean.filtro.nome}"/>
-			
-			<p:outputLabel for="nomeOriginal" value="Nome original: " />
-			<p:inputText id="nomeOriginal" value="#{filmeBean.filtro.nomeOriginal}" />
-			
-			<p:outputLabel for="nomeDiretor" value="Nome do Diretor: " />
-			<p:inputText id="nomeDiretor" value="#{filmeBean.filtro.nomeDiretor}" />
-			
-			<p:outputLabel for="nomeAtor" value="Ator: " />
-			<p:selectOneMenu id="nomeAtor" value="#{filmeBean.filtro.nomeAtor}" effect="fold">
-				<f:selectItem></f:selectItem>
-		            <f:selectItems value="#{filmeBean.lerAtores()}" var="ator" itemLabel="#{ator.nome}" itemValue="#{ator.nome}" />
-	        </p:selectOneMenu>
-											
-			<p:commandButton value="Pesquisar" action="#{filmeBean.pesquisar}" update="table-filmes"/>		
-		</p:panelGrid>
-	</h:form>
-	
-	<ui:include src="lista-carrinho.xhtml" />
-
+	<p:messages id="lista-filmes" showDetail="false" autoUpdate="true" closable="true" />
 	<p:dataTable id="table-filmes" var="filme" value="#{filmeBean.filmes}">
 		<f:facet name="header">
             Acervo de Filmes

@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import br.com.infnet.bomfilme.model.CarrinhoItem;
@@ -31,6 +33,8 @@ public class CarrinhoBean {
 	public void incluirItemCarrinho(Filme filme, String tipoMidia) {
 		CarrinhoItem item = new CarrinhoItem(filme, tipoMidia);
 		itens.add(item);
+		
+		FacesContext.getCurrentInstance().addMessage("lista-filmes", new FacesMessage(FacesMessage.SEVERITY_INFO, "Filme incluído no carrinho!", null));
 	}
 	
 	public String alugarFilmes(Usuario usuario) {

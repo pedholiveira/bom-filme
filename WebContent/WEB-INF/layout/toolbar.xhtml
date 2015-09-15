@@ -5,9 +5,7 @@
     xmlns:p="http://primefaces.org/ui">
 
 	<h:form>     
-		<div class="banner">
-		</div>
-	    <p:toolbar style="padding: 7 25 7 25">
+	    <p:toolbar styleClass="toolbar">
 	        <f:facet name="left">
 	        	<p:outputLabel value="Bem vindo, #{userSessionBean.usuarioLogado.nome}" 
 	        					style="margin-right: 100px" rendered="#{userSessionBean.isLogado()}"/>
@@ -25,23 +23,36 @@
 		            </span>
 		      	</h:panelGroup>
 	        </f:facet>
+	        
 	        <f:facet name="right">
-	        	<h:panelGroup rendered="#{userSessionBean.isLogado() == false}">
+	        	<span class="ui-separator">
+            	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
+	            </span>
+	            <p:commandLink id="carrinho-filmes" value="Carrinho de Filmes" immediate="true"/>
+				<p:overlayPanel for="carrinho-filmes" hideEffect="fade" dynamic="true" style="width:600px">
+					<ui:include src="filmes/lista-carrinho.xhtml" />
+				</p:overlayPanel>
+	        	<h:panelGroup styleClass="login" rendered="#{userSessionBean.isLogado() == false}">
 		        	<span class="ui-separator">
 		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
-		        	<p:link href="login.xhtml" value="Entrar" 
-		        			rendered="#{userSessionBean.isLogado() == false}"/>
+		            <p:outputLabel for="login" value="Login:"/>
+		            <p:inputText id="login" value="#{userSessionBean.login.login}" autocomplete="off"/>
+		            <p:outputLabel for="senha" value="Senha:"/>
+		            <p:password id="senha" value="#{userSessionBean.login.senha}"/>
+		        	<p:commandLink action="#{userSessionBean.logar}" value="Entrar"
+		        						update="@form"/>
 		        	<span class="ui-separator">
 		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
 		       	</h:panelGroup>
+		       	
 	        	<h:panelGroup rendered="#{userSessionBean.isLogado()}">
 	        		<span class="ui-separator">
 		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
 		        	<p:link href="filmes-alugados.xhtml" value="Filmes Alugados"/>
-		        	<span class="ui-separator">
+					<span class="ui-separator">
 	            	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
 		            <p:commandLink action="#{userSessionBean.logout}" value="Sair"/>
