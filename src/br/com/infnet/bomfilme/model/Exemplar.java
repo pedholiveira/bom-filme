@@ -9,9 +9,9 @@ import java.util.Calendar;
  */
 public class Exemplar {
 	private Calendar dataAquisicao;
-	private String tipoMidia; //TODO - Transformar tipo de midia em um enum.
+	private String tipoMidia;
 	private Double valorAquisicao;
-	private boolean alugado = false;
+	private String status = StatusExemplar.DISPONIVEL;
 
 	public Exemplar() {
 	}
@@ -47,11 +47,11 @@ public class Exemplar {
 		this.valorAquisicao = valorAquisicao;
 	}
 
-	public boolean isAlugado() {
-		return alugado;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setAlugado(boolean alugado) {
-		this.alugado = alugado;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

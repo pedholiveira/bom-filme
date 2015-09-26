@@ -7,8 +7,10 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import br.com.infnet.bomfilme.filtro.FiltroFilme;
+import br.com.infnet.bomfilme.model.Exemplar;
 import br.com.infnet.bomfilme.model.Filme;
 import br.com.infnet.bomfilme.model.Profissional;
+import br.com.infnet.bomfilme.model.Reserva;
 import br.com.infnet.bomfilme.repository.FilmeRepository;
 
 /**
@@ -38,5 +40,14 @@ public class FilmeService {
 	 */
 	public Set<Profissional> listarAtores() {
 		return repository.listarAtores();
+	}
+	
+	/**
+	 * Realiza a reserva do {@link Exemplar} de um {@link Filme}.
+	 * 
+	 * @param reserva - Objeto do tipo {@link Reserva}
+	 */
+	public void reservarFilme(Reserva reserva) {
+		repository.reservarFilme(reserva);
 	}
 }

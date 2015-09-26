@@ -9,9 +9,12 @@ import javax.inject.Inject;
 
 import br.com.infnet.bomfilme.filtro.FiltroFilme;
 import br.com.infnet.bomfilme.model.Aluguel;
+import br.com.infnet.bomfilme.model.Exemplar;
 import br.com.infnet.bomfilme.model.Filme;
 import br.com.infnet.bomfilme.model.Papel;
 import br.com.infnet.bomfilme.model.Profissional;
+import br.com.infnet.bomfilme.model.Reserva;
+import br.com.infnet.bomfilme.model.StatusExemplar;
 import br.com.infnet.bomfilme.model.Usuario;
 import br.com.infnet.bomfilme.repository.FilmeRepository;
 import br.com.infnet.bomfilme.repository.UsuarioRepository;
@@ -38,7 +41,6 @@ public class FilmeDAO implements FilmeRepository {
 									.stream()
 									.filter(f -> f.getNome().equals(filtro.getNome()))
 									.collect(Collectors.toList());
-			
 		}
 		
 		if(filtro.getNomeOriginal() != null) {
@@ -57,7 +59,6 @@ public class FilmeDAO implements FilmeRepository {
 									.collect(Collectors.toList());
 		}
 		
-		//TODO - Corrigir o filtro para procurar pelo papel do profissional.
 		if(filtro.getNomeAtor() != null) {
 			Profissional ator = buscarAtorPorNome(filtro.getNomeAtor());
 			
@@ -108,7 +109,27 @@ public class FilmeDAO implements FilmeRepository {
 				for (int y = 0; y < filmesCadastrados.get(i).getExemplares().size(); y++) {
 					if(filmesCadastrados.get(i).getExemplares().get(y).getTipoMidia().equals(tipoMidia)) {
 						usuarioRepository.incluirAluguel(usuario, aluguel);
-						filmesCadastrados.get(i).getExemplares().get(y).setAlugado(true);
+						filmesCadastrados.get(i).getExemplares().get(y).setStatus(StatusExemplar.ALUGADO);
+						
+						return;
+					}
+				}
+				
+				break;
+			}
+		}
+	}
+
+	@Override
+	public void reservarFilme(Reserva reserva) {
+		Filme filme = reserva.getFilme();
+		Exemplar exemplar = reserva.getExemplar();
+		
+		for (int i = 0; i < filmesCadastrados.size(); i++) {
+			if(filmesCadastrados.get(i).equals(filme)) {
+				for (int y = 0; y < filmesCadastrados.get(i).getExemplares().size(); y++) {
+					if(filmesCadastrados.get(i).getExemplares().get(y).equals(exemplar)) {
+						filmesCadastrados.get(i).getExemplares().get(y).setStatus(StatusExemplar.RESERVADO);
 						
 						return;
 					}

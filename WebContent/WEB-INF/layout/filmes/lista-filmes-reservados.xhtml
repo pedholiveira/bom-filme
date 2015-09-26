@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<div style="margin: 10 0 10 0">
+		<p:dataTable id="table-filmes-reservados" var="reserva" value="#{userSessionBean.usuarioLogado.reservas}" emptyMessage="Você não possui filmes reservados.">
+			<f:facet name="header">
+	            Filmes Reservados
+	        </f:facet>
+			<p:column headerText="Nome: " sortBy="#{reserva.filme.nome}">
+		        <h:outputText value="#{reserva.filme.nome}" />
+		    </p:column>
+		    <p:column headerText="Tipo de Mídia: " sortBy="#{reserva.exemplar.tipoMidia}">
+		        <h:outputText value="#{reserva.exemplar.tipoMidia}" />
+		    </p:column>
+		    <p:column headerText="Data de Aluguel: " sortBy="#{reserva.dataAluguel}">
+		        <h:outputText value="#{reserva.dataAluguel}" />
+		    </p:column>
+		</p:dataTable>
+	</div>
+</html>

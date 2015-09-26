@@ -8,18 +8,21 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import br.com.infnet.bomfilme.model.CarrinhoItem;
-import br.com.infnet.bomfilme.model.Filme;
 import br.com.infnet.bomfilme.model.Usuario;
 import br.com.infnet.bomfilme.service.CarrinhoService;
 
 @ManagedBean(name="carrinhoBean")
 @SessionScoped
 public class CarrinhoBean {
+	@ManagedProperty(value="#{userSessionBean}")
+	private UserSessionBean userSessionBean;
+	
 	@Inject
 	private CarrinhoService service;
 	
@@ -30,16 +33,13 @@ public class CarrinhoBean {
 		itens = new ArrayList<CarrinhoItem>();
 	}
 	
-	public void incluirItemCarrinho(Filme filme, String tipoMidia) {
-		CarrinhoItem item = new CarrinhoItem(filme, tipoMidia);
-		itens.add(item);
-		
-		FacesContext.getCurrentInstance().addMessage("lista-filmes", new FacesMessage(FacesMessage.SEVERITY_INFO, "Filme incluído no carrinho!", null));
-	}
-	
 	public String alugarFilmes(Usuario usuario) {
 		service.alugarFilmes(usuario, itens);
 		itens.clear();
+		
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage(FacesMessage.SEVERITY_INFO, 
+									"Filmes alugados com sucesso.", null));
 		
 		return "filmes";
 	}
@@ -54,7 +54,26 @@ public class CarrinhoBean {
 					.sum();
 	}
 	
+	public String validarAluguel() {
+		if(userSessionBean.getUsuarioLogado() != null) {
+			return "confirmar-aluguel.xhtml?faces-redirect=true";
+		}
+		
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+									"É necessário estar logado, para alugar um filme.", null));
+		return null;
+	}
+	
 	public List<CarrinhoItem> getItens() {
 		return itens;
+	}
+
+	public UserSessionBean getUserSessionBean() {
+		return userSessionBean;
+	}
+
+	public void setUserSessionBean(UserSessionBean userSessionBean) {
+		this.userSessionBean = userSessionBean;
 	}
 }

@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid styleClass="borderless">
+		<p:row>
+			<p:column colspan="2">
+				<p:outputLabel value="Para confirmar a reserva, preencha a data de aluguel:"/>
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column>
+				<p:outputLabel value="Data de aluguel: "/>
+			</p:column>
+			<p:column>
+				<p:calendar value="#{filmeBean.dataReserva}" pattern="dd/MM/yyyy" mask="true"/>
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column colspan="2">
+				<p:commandButton value="Reservar" action="#{filmeBean.reservar}" style="float: right" onclick="PF('modal-reserva').hide();" />
+			</p:column>
+		</p:row>
+	</p:panelGrid>
+</ui:composition>

@@ -8,7 +8,7 @@
 	    <p:toolbar styleClass="toolbar">
 	        <f:facet name="left">
 	        	<p:outputLabel value="Bem vindo, #{userSessionBean.usuarioLogado.nome}" 
-	        					style="margin-right: 100px" rendered="#{userSessionBean.isLogado()}"/>
+	        					style="margin-right: 100px" rendered="#{loginBean.isLogado()}"/>
 	        	<span class="ui-separator">
             	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 	            </span>
@@ -16,8 +16,8 @@
         	 	<span class="ui-separator">
             	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 	            </span>
-	            <h:panelGroup rendered="#{userSessionBean.isLogado()}">
-		            <p:link href="sugerir-filmes.xhtml" value="Sugestões"/>
+	            <h:panelGroup rendered="#{loginBean.isLogado()}">
+		            <p:commandLink value="Sugestões" onclick="PF('modal-sugestao').show();"/>
 		           	<span class="ui-separator">
 		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
@@ -25,37 +25,47 @@
 	        </f:facet>
 	        
 	        <f:facet name="right">
-	        	<span class="ui-separator">
+        		<span class="ui-separator">
             	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 	            </span>
 	            <p:commandLink id="carrinho-filmes" value="Carrinho de Filmes" immediate="true"/>
 				<p:overlayPanel for="carrinho-filmes" hideEffect="fade" dynamic="true" style="width:600px">
 					<ui:include src="filmes/lista-carrinho.xhtml" />
 				</p:overlayPanel>
-	        	<h:panelGroup styleClass="login" rendered="#{userSessionBean.isLogado() == false}">
+	        	<h:panelGroup rendered="#{loginBean.isLogado() == false}">
 		        	<span class="ui-separator">
 		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
 		            <p:outputLabel for="login" value="Login:"/>
-		            <p:inputText id="login" value="#{userSessionBean.login.login}" autocomplete="off"/>
+		            <p:inputText id="login" value="#{loginBean.login.login}" autocomplete="off"/>
 		            <p:outputLabel for="senha" value="Senha:"/>
-		            <p:password id="senha" value="#{userSessionBean.login.senha}"/>
-		        	<p:commandLink action="#{userSessionBean.logar}" value="Entrar"
-		        						update="@form"/>
+		            <p:password id="senha" value="#{loginBean.login.senha}"/>
+		        	<p:commandLink action="#{loginBean.logar}" value="Entrar"
+		        						update="@all"/>
 		        	<span class="ui-separator">
 		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
 		       	</h:panelGroup>
 		       	
-	        	<h:panelGroup rendered="#{userSessionBean.isLogado()}">
+	        	<h:panelGroup rendered="#{loginBean.isLogado()}">
 	        		<span class="ui-separator">
 		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
-		        	<p:link href="filmes-alugados.xhtml" value="Filmes Alugados"/>
+		        	<p:commandLink id="filmes-alugados" value="Filmes Alugados" immediate="true"/>
+					<p:overlayPanel for="filmes-alugados" hideEffect="fade" dynamic="true" style="width:900px">
+						<ui:include src="filmes/lista-filmes-alugados.xhtml" />
+					</p:overlayPanel>
 					<span class="ui-separator">
 	            	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
-		            <p:commandLink action="#{userSessionBean.logout}" value="Sair"/>
+		            <p:commandLink id="filmes-reservados" value="Filmes Reservados" immediate="true"/>
+					<p:overlayPanel for="filmes-reservados" hideEffect="fade" dynamic="true" style="width:900px">
+						<ui:include src="filmes/lista-filmes-reservados.xhtml" />
+					</p:overlayPanel>
+		            <span class="ui-separator">
+	            	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
+		            </span>
+		            <p:commandLink action="#{loginBean.logout}" value="Sair"/>
 		            <span class="ui-separator">
 		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
@@ -63,4 +73,10 @@
 	        </f:facet>
 	    </p:toolbar>
 	</h:form>
+	
+	<p:dialog header="Nos ajude a melhorar!" widgetVar="modal-sugestao" modal="true">
+	    <h:form>
+			<ui:include src="filmes/sugerir-filmes.xhtml" />
+		</h:form>
+	</p:dialog>
 </ui:composition>

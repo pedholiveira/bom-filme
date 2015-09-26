@@ -8,7 +8,54 @@
 		<ui:param name="title" value="Listagem de filmes" />
        	<ui:define name="conteudo">
        		<ui:include src="WEB-INF/layout/filmes/busca-filmes.xhtml" />
-			<ui:include src="WEB-INF/layout/filmes/lista-filmes.xhtml" />
+			
+			<p:dataTable id="table-filmes" var="filme" value="#{filmeBean.filmes}" emptyMessage="Nenhum filme encontrado.">
+				<f:facet name="header">
+		            Acervo de Filmes
+		        </f:facet>
+				<p:column headerText="Nome: " sortBy="#{filme.nome}">
+			        <h:outputText value="#{filme.nome}" />
+			    </p:column>
+				<p:column headerText="Nome original: " sortBy="#{filme.nomeOriginal}">
+			        <h:outputText value="#{filme.nomeOriginal}" />
+			    </p:column>
+			    <p:column headerText="Estúdio: " sortBy="#{filme.estudioPrincipal}">
+			        <h:outputText value="#{filme.estudioPrincipal}" />
+			    </p:column>
+			    <p:column headerText="Ano de Produção: " sortBy="#{filme.anoProducao}" width="10%">
+			        <h:outputText value="#{filme.anoProducao}" />
+			    </p:column>
+			    <p:column headerText="Quantidade disponível: " width="30%">
+			    	<h:form>
+				    	<p:panelGrid columns="1">
+				    		<p:row>
+				    			<p:outputLabel value="DVD - #{filmeBean.lerQuantidadeExemplares(filme, 'DVD')}" style="float: left" />
+				    			<p:commandLink value="Reservar" style="float: right" rendered="#{loginBean.isLogado()}" disabled="#{filmeBean.lerQuantidadeExemplares(filme, 'DVD') == 0}" onclick="PF('modal-reserva').show();">
+				    				<p:ajax event="click" listener="#{filmeBean.iniciarReserva(filme, 'DVD')}"/>
+				    			</p:commandLink>
+				    			<p:commandLink value="Incluir no carrinho" style="float: right; margin-right: 20px" disabled="#{filmeBean.lerQuantidadeExemplares(filme, 'DVD') == 0}">
+				    				<p:ajax event="click" update="@all" listener="#{filmeBean.incluirItemCarrinho(filme, 'DVD')}"/>
+				    			</p:commandLink>
+				    		</p:row>
+				    		<p:row>
+				    			<p:outputLabel value="Bluray - #{filmeBean.lerQuantidadeExemplares(filme, 'Bluray')}" style="float: left"/>
+					    		<p:commandLink value="Reservar" style="float: right" rendered="#{loginBean.isLogado()}" disabled="#{filmeBean.lerQuantidadeExemplares(filme, 'Bluray') == 0}" onclick="PF('modal-reserva').show();">
+				    				<p:ajax event="click" listener="#{filmeBean.iniciarReserva(filme, 'Bluray')}"/>
+				    			</p:commandLink>
+					    		<p:commandLink value="Incluir no carrinho" style="float: right; margin-right: 20px" disabled="#{filmeBean.lerQuantidadeExemplares(filme, 'Bluray') == 0}">
+					    			<p:ajax event="click" update="@all" listener="#{filmeBean.incluirItemCarrinho(filme, 'Bluray')}"/>
+					    		</p:commandLink>
+				    		</p:row>
+				    	</p:panelGrid>
+				    </h:form>
+			    </p:column>
+			</p:dataTable>
+			
+			<p:dialog header="Confirmar Reserva" widgetVar="modal-reserva" modal="true">
+			    <h:form>
+					<ui:include src="WEB-INF/layout/filmes/confirmar-reserva.xhtml" />
+				</h:form>
+			</p:dialog> 
        	</ui:define>
 	</ui:decorate>
 </html>

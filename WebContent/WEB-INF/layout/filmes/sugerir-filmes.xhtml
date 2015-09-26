@@ -4,14 +4,10 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
 
-	<p:panelGrid>
+	<p:panelGrid styleClass="borderless">
 		<p:row>
 			<p:column colspan="2">
-				<p:outputLabel value="Nos ajude a melhorar!"/>
-				<br />
 				<p:outputLabel value="Qual filme gostaria de ver aqui?"/>
-				<br />
-				<p:messages id="messages" showIcon="false" autoUpdate="true" closable="true" />
 			</p:column>
 		</p:row>
 		<p:row>
@@ -33,7 +29,7 @@
 		<p:row>
 			<p:column></p:column>
 			<p:column>
-				<p:commandButton action="#{sugestaoBean.gravar(userSessionBean.usuarioLogado)}" value="Enviar"/>
+				<p:commandButton action="#{sugestaoBean.gravar}" value="Enviar" onclick="PF('modal-sugestao').hide();"/>
 			</p:column>
 		</p:row>
 	</p:panelGrid>

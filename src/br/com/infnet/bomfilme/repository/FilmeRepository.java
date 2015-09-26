@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Set;
 
 import br.com.infnet.bomfilme.filtro.FiltroFilme;
+import br.com.infnet.bomfilme.model.Exemplar;
 import br.com.infnet.bomfilme.model.Filme;
 import br.com.infnet.bomfilme.model.Profissional;
+import br.com.infnet.bomfilme.model.Reserva;
 import br.com.infnet.bomfilme.model.Usuario;
 
 /**
@@ -53,4 +55,11 @@ public interface FilmeRepository {
 	 * @param tipoMidia
 	 */
 	public void alugarFilmes(Usuario usuario, Filme filme, String tipoMidia);
+
+	/**
+	 * Realiza a reserva do {@link Exemplar} de um {@link Filme}.
+	 * 
+	 * @param reserva - Objeto do tipo {@link Reserva}
+	 */
+	public void reservarFilme(Reserva reserva);
 }

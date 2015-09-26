@@ -13,11 +13,11 @@ public class Usuario {
 	private Endereco endereco;
 	private String cpf;
 	private String email;
-	private String identidade; // TODO - Mudar para lista de identidades.
+	private String identidade;
 	private List<String> telefones;
 	private Login login;
 	private List<Aluguel> filmesAlugados = new ArrayList<Aluguel>();
-	// TODO - Incluir atributo para lista de dependentes.
+	private List<Reserva> reservas = new ArrayList<Reserva>();
 	
 	public Usuario() {
 	}
@@ -97,6 +97,14 @@ public class Usuario {
 
 	public void setFilmesAlugados(List<Aluguel> filmesAlugados) {
 		this.filmesAlugados = filmesAlugados;
+	}
+
+	public List<Reserva> getReservas() {
+		return reservas;
+	}
+
+	public void setReservas(List<Reserva> reservas) {
+		this.reservas = reservas;
 	}
 
 }

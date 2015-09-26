@@ -33,3 +33,31 @@ body {
 .ui-messages {
 	font-size: 12px !important;
 }
+
+.panel {
+	box-shadow: 7px 7px 16px #888;
+	background-color: #F2F2F2;
+}
+
+.panel tr {
+	background-color: #F2F2F2;
+}
+
+.horizontal-center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+/* Remove as bordas de um panelgrid */
+.ui-panelgrid.borderless>*>tr,
+.ui-panelgrid.borderless .ui-panelgrid-cell {
+    border: none;
+}

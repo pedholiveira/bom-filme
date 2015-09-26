@@ -2,62 +2,56 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 	
-	<h:head>
-		<title>Confirmar aluguel</title>
-		
-		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
-	</h:head>
-	
-	<h:body>
-		<h:form>
-			<p:panelGrid id="panel-filme" styleClass="login borderless">
-				<p:row>
-					<p:column colspan="2">
-						<p:outputLabel value="Confirma o aluguel dos filmes para o endereço abaixo?"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<p:outputLabel value="Endereço:"/>
-					</p:column>
-					<p:column>
-						<p:outputLabel value="#{userSessionBean.usuarioLogado.endereco}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column colspan="2">
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<p:outputLabel value="Data de devolução:"/>
-					</p:column>
-					<p:column>
-						<p:outputLabel value="#{carrinhoBean.calcularDataDevolucao()}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<p:outputLabel value="Total:"/>
-					</p:column>
-					<p:column>
-						<p:outputLabel value="R$ #{carrinhoBean.calcularTotalAluguel()}"/>
-					</p:column>
-				</p:row>
-				<p:row>
-					<p:column>
-						<p:commandButton action="filmes.xhtml?faces-redirect=true" 
-											styleClass="bt-entrar" value="Não" />
-					</p:column>
-					<p:column>
-						<p:commandButton action="#{carrinhoBean.alugarFilmes(userSessionBean.usuarioLogado)}" styleClass="bt-entrar" 
-											value="Sim"/>
-					</p:column>
-				</p:row>
-			</p:panelGrid>
-		</h:form>
-	</h:body>
+	<ui:decorate template="WEB-INF/layout/template/padrao.xhtml">
+		<ui:param name="title" value="Confirmar Aluguel" />
+       	<ui:define name="conteudo">
+			<h:form>
+				<p:panelGrid id="panel-filme" styleClass="horizontal-center panel borderless">
+					<p:row>
+						<p:column colspan="2">
+							<p:outputLabel value="Confirma o aluguel dos filmes para o endereço abaixo?"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Endereço:"/>
+						</p:column>
+						<p:column>
+							<p:outputLabel value="#{userSessionBean.usuarioLogado.endereco}"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Data de devolução:"/>
+						</p:column>
+						<p:column>
+							<p:outputLabel value="#{carrinhoBean.calcularDataDevolucao()}"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="Total:"/>
+						</p:column>
+						<p:column>
+							<p:outputLabel value="#{carrinhoBean.calcularTotalAluguel()}">
+								<f:convertNumber currencySymbol="R$" type="currency" />
+							</p:outputLabel>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:commandButton action="filmes.xhtml?faces-redirect=true" 
+												styleClass="right" value="Não" />
+						</p:column>
+						<p:column>
+							<p:commandButton action="#{carrinhoBean.alugarFilmes(userSessionBean.usuarioLogado)}" 
+												styleClass="left" value="Sim"/>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:decorate>
 </html>
