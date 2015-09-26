@@ -1,4 +1,4 @@
-package br.com.infnet.bomfilme.model;
+package br.com.infnet.bomfilme.model.constant;
 
 /**
  * Mantém os diferentes tipos de mídias disponíveis.

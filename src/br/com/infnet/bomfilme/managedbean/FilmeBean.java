@@ -23,7 +23,7 @@ import br.com.infnet.bomfilme.model.Exemplar;
 import br.com.infnet.bomfilme.model.Filme;
 import br.com.infnet.bomfilme.model.Profissional;
 import br.com.infnet.bomfilme.model.Reserva;
-import br.com.infnet.bomfilme.model.StatusExemplar;
+import br.com.infnet.bomfilme.model.constant.StatusExemplar;
 import br.com.infnet.bomfilme.service.FilmeService;
 
 @ManagedBean(name = "filmeBean")

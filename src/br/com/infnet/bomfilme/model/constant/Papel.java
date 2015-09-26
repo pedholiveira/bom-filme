@@ -1,4 +1,4 @@
-package br.com.infnet.bomfilme.model;
+package br.com.infnet.bomfilme.model.constant;
 
 public interface Papel {
 	public static final String ATOR = "Ator";

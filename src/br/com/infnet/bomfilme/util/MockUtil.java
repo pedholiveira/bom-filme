@@ -7,15 +7,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import br.com.infnet.bomfilme.model.Categoria;
 import br.com.infnet.bomfilme.model.Endereco;
 import br.com.infnet.bomfilme.model.Exemplar;
 import br.com.infnet.bomfilme.model.Filme;
 import br.com.infnet.bomfilme.model.Login;
-import br.com.infnet.bomfilme.model.Papel;
 import br.com.infnet.bomfilme.model.Profissional;
-import br.com.infnet.bomfilme.model.TipoMidia;
 import br.com.infnet.bomfilme.model.Usuario;
+import br.com.infnet.bomfilme.model.constant.Categoria;
+import br.com.infnet.bomfilme.model.constant.Papel;
+import br.com.infnet.bomfilme.model.constant.TipoMidia;
 
 /**
  * Utilitário responsável por mockar os dados no sistema.

@@ -2,6 +2,8 @@ package br.com.infnet.bomfilme.model;
 
 import java.util.Calendar;
 
+import br.com.infnet.bomfilme.model.constant.StatusExemplar;
+
 /**
  * Representa um exemplar de um filme.
  * 
