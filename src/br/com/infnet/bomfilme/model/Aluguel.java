@@ -5,8 +5,8 @@ import java.time.LocalDate;
 public class Aluguel {
 	private Filme filme;
 	private String tipoMidia;
-	private LocalDate dataAluguel;
-	private LocalDate dataDevolucao;
+	private LocalDate dataAluguel = LocalDate.now();
+	private LocalDate dataDevolucao = LocalDate.now().plusDays(3);
 
 	public Aluguel() {
 	}
@@ -14,8 +14,6 @@ public class Aluguel {
 	public Aluguel(Filme filme, String tipoMidia) {
 		this.filme = filme;
 		this.tipoMidia = tipoMidia;
-		this.dataAluguel = LocalDate.now();
-		this.dataDevolucao = LocalDate.now().plusDays(3);
 	}
 
 	public Filme getFilme() {

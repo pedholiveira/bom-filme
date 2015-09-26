@@ -15,7 +15,9 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import br.com.infnet.bomfilme.dto.MidiaAlugadaDTO;
 import br.com.infnet.bomfilme.filtro.FiltroFilme;
+import br.com.infnet.bomfilme.filtro.FiltroMidiasAlugadas;
 import br.com.infnet.bomfilme.model.CarrinhoItem;
 import br.com.infnet.bomfilme.model.Exemplar;
 import br.com.infnet.bomfilme.model.Filme;
@@ -35,11 +37,15 @@ public class FilmeBean {
 	@Inject
 	private FiltroFilme filtro;
 	@Inject
+	private FiltroMidiasAlugadas filtroMidiasAlugadas;
+	@Inject
 	private FilmeService service;
 	@Inject
 	private Reserva reserva;
 	
 	private List<Filme> filmes;
+	
+	private List<MidiaAlugadaDTO> midiasAlugadas;
 
 	private Date dataReserva;
 	
@@ -66,7 +72,13 @@ public class FilmeBean {
 		
 		FacesContext.getCurrentInstance().addMessage("lista-filmes", new FacesMessage(FacesMessage.SEVERITY_INFO, "Filme incluído no carrinho!", null));
 	}
-	
+
+	/**
+	 * Inicia o processo de reserva de um filme.
+	 * 
+	 * @param filme
+	 * @param tipoMidia
+	 */
 	public void iniciarReserva(Filme filme, String tipoMidia) {
 		Exemplar exemplar = filme.getExemplares()
 									.stream()
@@ -79,6 +91,9 @@ public class FilmeBean {
 		reserva.setExemplar(exemplar);
 	}
 	
+	/**
+	 * Realiza a reserva de um filme.
+	 */
 	public void reservar() {
 		Instant instant = Instant.ofEpochMilli(this.getDataReserva().getTime());
 		LocalDate dataReserva = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
@@ -90,6 +105,13 @@ public class FilmeBean {
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage(FacesMessage.SEVERITY_INFO, 
 									"Reserva efetuada!.", null));
+	}
+	
+	/**
+	 * Lista todas as mídias alugadas da locadora.
+	 */
+	public void pesquisarMidiasAlugadas() {
+		setMidiasAlugadas(service.pesquisarMidiasAlugadas(filtroMidiasAlugadas));
 	}
 	
 	public List<Filme> getFilmes() {
@@ -134,5 +156,21 @@ public class FilmeBean {
 
 	public void setDataReserva(Date dataReserva) {
 		this.dataReserva = dataReserva;
+	}
+
+	public FiltroMidiasAlugadas getFiltroMidiasAlugadas() {
+		return filtroMidiasAlugadas;
+	}
+
+	public void setFiltroMidiasAlugadas(FiltroMidiasAlugadas filtroMidiasAlugadas) {
+		this.filtroMidiasAlugadas = filtroMidiasAlugadas;
+	}
+
+	public List<MidiaAlugadaDTO> getMidiasAlugadas() {
+		return midiasAlugadas;
+	}
+
+	public void setMidiasAlugadas(List<MidiaAlugadaDTO> midiasAlugadas) {
+		this.midiasAlugadas = midiasAlugadas;
 	}
 }

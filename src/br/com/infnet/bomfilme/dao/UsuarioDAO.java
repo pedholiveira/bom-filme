@@ -36,4 +36,9 @@ public class UsuarioDAO implements UsuarioRepository {
 							.forEach(u -> u.getFilmesAlugados().add(aluguel));					
 	}
 
+	@Override
+	public List<Usuario> listar() {
+		return usuariosCadastrados;
+	}
+
 }

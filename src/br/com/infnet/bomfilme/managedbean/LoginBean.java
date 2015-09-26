@@ -31,7 +31,7 @@ public class LoginBean {
 	/**
 	 * Realiza o login a partir dos dados de {@link Login} inseridos.
 	 */
-	public void logar() {
+	public String logar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 
 		Usuario usuario = service.getUsuarioByLogin(login);
@@ -42,6 +42,12 @@ public class LoginBean {
 					FacesMessage.SEVERITY_ERROR, "Login ou senha inválidos.",
 					null));
 		}
+		
+		if(isAdmin()) {
+			return "midias-alugadas?faces-redirect=true";
+		}
+		
+		return "filmes?faces-redirect=true";
 	}
 
 	/**
@@ -60,6 +66,10 @@ public class LoginBean {
 	 */
 	public boolean isLogado() {
 		return userSessionBean.getUsuarioLogado() != null;
+	}
+	
+	public boolean isAdmin() {
+		return isLogado() && userSessionBean.getUsuarioLogado().getLogin().isAdmin();
 	}
 	
 	public UserSessionBean getUserSessionBean() {

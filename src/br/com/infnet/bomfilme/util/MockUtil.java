@@ -115,8 +115,10 @@ public class MockUtil {
 										"Bairro Teste", "123456", "Rio de Janeiro", 
 										"RJ");
 		Login login = new Login("login", "senha");
+		Login admin = new Login("admin", "admin", true);
 		
-		usuariosCadastrados.add(new Usuario("Pedro Henrique", endereco, "116.909.027-36", "ped.holiveira@gmail.com", "25.823.344-4", Arrays.asList("981648444"), login));
+		usuariosCadastrados.add(new Usuario("Pedro Henrique", endereco, "123.456.789.12", "ped.holiveira@gmail.com", "12.345.678-9", Arrays.asList("12345678"), login));
+		usuariosCadastrados.add(new Usuario("Administrador", endereco, "123.456.789.12", "admin@gmail.com", "12.345.678-9", Arrays.asList("12345678"), admin));
 	}
 	
 }

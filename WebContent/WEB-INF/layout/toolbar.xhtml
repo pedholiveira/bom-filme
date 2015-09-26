@@ -22,6 +22,12 @@
 		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
 		      	</h:panelGroup>
+		      	<h:panelGroup rendered="#{loginBean.isAdmin()}">
+		            <p:link href="midias-alugadas.xhtml" value="Mídias Alugados"/>
+		           	<span class="ui-separator">
+		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
+		            </span>
+		      	</h:panelGroup>
 	        </f:facet>
 	        
 	        <f:facet name="right">

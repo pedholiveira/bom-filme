@@ -7,6 +7,8 @@ public class Login {
 	private String login;
 	@NotNull(message="O campo senha é obrigatório.")
 	private String senha;
+	
+	private boolean admin = false;
 
 	public Login() {
 	}
@@ -16,6 +18,12 @@ public class Login {
 		this.senha = senha;
 	}
 
+	public Login(String login, String senha, boolean admin) {
+		this.login = login;
+		this.senha = senha;
+		this.admin = admin;
+	}
+	
 	public String getLogin() {
 		return login;
 	}
@@ -47,5 +55,13 @@ public class Login {
 		}
 		
 		return false;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
 	}
 }

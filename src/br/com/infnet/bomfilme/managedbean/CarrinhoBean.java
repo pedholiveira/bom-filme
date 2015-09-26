@@ -56,7 +56,7 @@ public class CarrinhoBean {
 	
 	public String validarAluguel() {
 		if(userSessionBean.getUsuarioLogado() != null) {
-			return "confirmar-aluguel.xhtml?faces-redirect=true";
+			return "confirmar-aluguel";
 		}
 		
 		FacesContext.getCurrentInstance().addMessage(null, 

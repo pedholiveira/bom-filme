@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:decorate template="WEB-INF/layout/template/padrao.xhtml">
+		<ui:param name="title" value="Midias Alugadas" />
+       	<ui:define name="conteudo">
+       		<h:panelGroup rendered="#{loginBean.isAdmin()}">
+				<h:form>
+					<p:panelGrid columns="2" styleClass="panel borderless">
+						<p:outputLabel for="de" value="De: " />
+						<p:calendar id="de" value="#{filmeBean.filtroMidiasAlugadas.de}" pattern="dd/MM/yyyy" mask="true"/>
+
+						<p:outputLabel for="ate" value="Ate: " />
+						<p:calendar id="ate" value="#{filmeBean.filtroMidiasAlugadas.ate}" pattern="dd/MM/yyyy" mask="true"/>
+
+						<p:commandButton value="Pesquisar" action="#{filmeBean.pesquisarMidiasAlugadas}" update="table-midias" style="float: right"/>		
+					</p:panelGrid>
+				</h:form>
+								
+				<p:dataTable id="table-midias" var="item" value="#{filmeBean.midiasAlugadas}" emptyMessage="Nenhuma midia encontrada.">
+					<f:facet name="header">
+			            Mídias alugadas
+			        </f:facet>
+					<p:column headerText="Nome do filme: ">
+				        <h:outputText value="#{item.nomeFilme}" />
+				    </p:column>
+					<p:column headerText="Tipo de Mídia: ">
+				        <h:outputText value="#{item.tipoMidia}" />
+				    </p:column>
+				    <p:column headerText="Nome do Usuário: ">
+				        <h:outputText value="#{item.nomeUsuario}" />
+				    </p:column>
+				    <p:column headerText="Data do aluguel: ">
+				        <h:outputText value="#{item.dataAluguel}" />
+				    </p:column>
+				</p:dataTable>
+			</h:panelGroup> 
+       	</ui:define>
+	</ui:decorate>
+</html>

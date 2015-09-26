@@ -1,5 +1,7 @@
 package br.com.infnet.bomfilme.repository;
 
+import java.util.List;
+
 import br.com.infnet.bomfilme.model.Aluguel;
 import br.com.infnet.bomfilme.model.Login;
 import br.com.infnet.bomfilme.model.Usuario;
@@ -25,4 +27,11 @@ public interface UsuarioRepository {
 	 * @param aluguel
 	 */
 	public void incluirAluguel(Usuario user, Aluguel aluguel);
+	
+	/**
+	 * Lista todos os usuario cadastrados no sistema.
+	 * 
+	 * @return
+	 */
+	public List<Usuario> listar();
 }
