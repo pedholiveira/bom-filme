@@ -39,7 +39,7 @@ public class FilmeBean {
 	@Inject
 	private FiltroMidiasAlugadas filtroMidiasAlugadas;
 	@Inject
-	private FilmeService service;
+	private FilmeService filmeService;
 	@Inject
 	private Reserva reserva;
 	
@@ -50,11 +50,11 @@ public class FilmeBean {
 	private Date dataReserva;
 	
 	public void pesquisar() {
-		filmes = service.pesquisarFilmes(filtro);
+		filmes = filmeService.pesquisarFilmes(filtro);
 	}
 
 	public Set<Profissional> lerAtores() {
-		return service.listarAtores();
+		return filmeService.listarAtores();
 	}
 
 	public long lerQuantidadeExemplares(Filme filme, String tipoMidia) {
@@ -67,6 +67,10 @@ public class FilmeBean {
 	}
 
 	public void incluirItemCarrinho(Filme filme, String tipoMidia) {
+		if(userSessionBean.getUsuarioLogado() != null) {
+			filmeService.verificarHistorico(filme, userSessionBean.getUsuarioLogado());
+		}
+		
 		CarrinhoItem item = new CarrinhoItem(filme, tipoMidia);
 		carrinhoBean.getItens().add(item);
 		
@@ -99,7 +103,7 @@ public class FilmeBean {
 		LocalDate dataReserva = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
 		
 		reserva.setDataReserva(dataReserva);
-		service.reservarFilme(reserva);
+		filmeService.reservarFilme(reserva);
 		
 		userSessionBean.getUsuarioLogado().getReservas().add(reserva);
 		FacesContext.getCurrentInstance().addMessage(null, 
@@ -111,7 +115,7 @@ public class FilmeBean {
 	 * Lista todas as mídias alugadas da locadora.
 	 */
 	public void pesquisarMidiasAlugadas() {
-		setMidiasAlugadas(service.pesquisarMidiasAlugadas(filtroMidiasAlugadas));
+		midiasAlugadas = filmeService.pesquisarMidiasAlugadas(filtroMidiasAlugadas);
 	}
 	
 	public List<Filme> getFilmes() {

@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
+
+import org.primefaces.context.RequestContext;
 
 import br.com.infnet.bomfilme.dto.MidiaAlugadaDTO;
 import br.com.infnet.bomfilme.filtro.FiltroFilme;
@@ -64,6 +67,12 @@ public class FilmeService {
 		repository.reservarFilme(reserva);
 	}
 
+	/**
+	 * Pesquisa todas os alugueis correntes da locadora em uma faixa de data.
+	 * 
+	 * @param filtroMidiasAlugadas
+	 * @return
+	 */
 	public List<MidiaAlugadaDTO> pesquisarMidiasAlugadas(FiltroMidiasAlugadas filtroMidiasAlugadas) {
 		List<MidiaAlugadaDTO> dtos = new ArrayList<MidiaAlugadaDTO>(); 
 		List<Usuario> usuarios = usuarioRepository.listar();
@@ -93,5 +102,25 @@ public class FilmeService {
 		}
 		
 		return dtos;
+	}
+	
+	/**
+	 * Verifica se o usuário logado já alugou o filme desejado antes.
+	 * 
+	 * @param filme
+	 * @param usuarioLogado 
+	 */
+	public void verificarHistorico(Filme filme, Usuario usuarioLogado) {
+		List<Aluguel> filmesAlugados = usuarioLogado.getFilmesAlugados();
+		
+		for (Aluguel aluguel : filmesAlugados) {
+			if(aluguel.getFilme().equals(filme)) {
+				String dataAluguel = aluguel.getDataAluguel().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+				String mensagem = "Você já alugou esse filme em: " + dataAluguel;
+				
+				FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN, "Atenção", mensagem);
+		        RequestContext.getCurrentInstance().showMessageInDialog(facesMessage);
+			}
+		}
 	}
 }
