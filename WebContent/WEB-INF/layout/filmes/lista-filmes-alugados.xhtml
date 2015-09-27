@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 	<div style="margin: 10 0 10 0">
-		<p:dataTable id="table-filmes" var="aluguel" value="#{userSessionBean.usuarioLogado.filmesAlugados}" emptyMessage="Você não possui filmes alugados.">
+		<p:dataTable id="table-alugueis" var="aluguel" value="#{aluguelBean.listarAlugueisUsuario()}" emptyMessage="Você não possui filmes alugados.">
 			<f:facet name="header">
 	            Filmes Alugados
 	        </f:facet>
@@ -20,6 +20,18 @@
 		    </p:column>
 		    <p:column headerText="Data de Devolução: " sortBy="#{aluguel.dataDevolucao}">
 		        <h:outputText value="#{aluguel.dataDevolucao}" />
+		    </p:column>
+		    <p:column width="13%">
+				<p:commandLink actionListener="#{aluguelBean.estenderPrazoAluguel(aluguel)}" 
+								value="Estender aluguel">
+					<p:confirm header="Estender prazo de aluguel" icon="ui-icon-alert"
+								message="Deseja estender o prazo de aluguel em 3 dias?"/>
+				</p:commandLink>		        
+			 
+			    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+			        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			    </p:confirmDialog>
 		    </p:column>
 		</p:dataTable>
 	</div>

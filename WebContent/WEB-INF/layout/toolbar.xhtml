@@ -57,10 +57,14 @@
 	        		<span class="ui-separator">
 		           	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
-		        	<p:commandLink id="filmes-alugados" value="Filmes Alugados" immediate="true"/>
-					<p:overlayPanel for="filmes-alugados" hideEffect="fade" dynamic="true" style="width:900px">
-						<ui:include src="filmes/lista-filmes-alugados.xhtml" />
-					</p:overlayPanel>
+		            <h:panelGroup id="filmes-alugados">
+			        	<p:commandLink value="Filmes Alugados" immediate="true">
+			        		<p:ajax event="click" update="table-alugueis" />
+			        	</p:commandLink>
+						<p:overlayPanel id="filmes-alugados-panel" for="filmes-alugados" hideEffect="fade" dynamic="true" style="width:900px">
+							<ui:include src="filmes/lista-filmes-alugados.xhtml" />
+						</p:overlayPanel>
+		            </h:panelGroup>
 					<span class="ui-separator">
 	            	    <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
